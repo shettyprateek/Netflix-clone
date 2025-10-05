@@ -40,7 +40,7 @@ const Header = () => {
             >
               <img src="/assets/search-icon.svg" alt="searchIcon" />
             </button>
-            <img className="w-12" src="/assets/netflix-avatar.png" alt="userIcon" />
+            <img className="w-12" src="/assets/avatar.png" alt="userIcon" />
             <div className="px-4">
               <p className="text-red-700">{user.email.slice(0, 10)}</p>
               <button
