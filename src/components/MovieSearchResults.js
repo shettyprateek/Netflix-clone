@@ -12,12 +12,11 @@ const MovieSearchResults = () => {
   const searchMovie = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/search/movie?query=" +
-        searchQuery +
-        "&include_adult=false&page=1",
+      searchQuery +
+      "&include_adult=false&page=1",
       API_OPTIONS
     );
     const json = await data.json();
-    console.log(json.results);
     dispatch(addSearchedMovies(json));
   };
 

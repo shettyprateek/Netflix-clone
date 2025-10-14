@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SUGGESTION_API } from "../utils/constants";
+import { API_OPTIONS } from "../utils/constants";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleShowSearchBar } from "../utils/moviesSlice";
@@ -11,12 +11,16 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const suggestionApi = async () => {
-  //   const data = await fetch(SUGGESTION_API + searchQuery);
-  //   console.log(data)
-  //   const json = await data.json();
-  //   setSearchLists(json[1]);
-  // };
+  const suggestionApi = async () => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+      searchQuery +
+      "&include_adult=false&page=1",
+      API_OPTIONS
+    );
+    const json = await data.json();
+    setSearchLists(json.results.map(movie => movie.original_title).slice(0, 10));
+  };
 
   const onSearch = (e) => {
     if (e?.keyCode === 13) {
@@ -24,17 +28,17 @@ const SearchBar = () => {
       navigate("/search/" + e.target.value);
     }
   };
-  // useEffect(() => {
-  //   const setTimer = setTimeout(() => {
-  //     if (searchQuery) {
-  //       suggestionApi();
-  //     }
-  //   }, 200);
+  useEffect(() => {
+    const setTimer = setTimeout(() => {
+      if (searchQuery) {
+        suggestionApi();
+      }
+    }, 300);
 
-  //   return () => {
-  //     clearTimeout(setTimer);
-  //   };
-  // }, [searchQuery]);
+    return () => {
+      clearTimeout(setTimer);
+    };
+  }, [searchQuery]);
   return (
     <div>
       <div className="pt-[20%] md:pt-[6%] w-screen absolute z-30">
@@ -53,9 +57,9 @@ const SearchBar = () => {
         {showSuggestion && (
           <div className="w-screen">
             <div className="bg-[#1A1E26] md:mx-40">
-              {searchLists.map((searchList) => (
+              {searchLists.map((searchList, index) => (
                 <div
-                  key={searchList}
+                  key={index}
                   className="text-white hover:text-black hover:bg-white mx-5 md:mx-10 rounded-md"
                 >
                   <Link to={"/search/" + searchList}>

@@ -13,7 +13,6 @@ const Header = () => {
   const showSearchBar = useSelector((store) => store.movies.showSearchBar);
   const dispatch = useDispatch();
 
-  console.log(user)
   const handleSignOut = () => {
     signOut(auth)
       .then(() => { })

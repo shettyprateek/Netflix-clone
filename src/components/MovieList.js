@@ -3,7 +3,6 @@ import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
   if (!movies) return;
-  console.log(movies.results.length);
   return movies.results.length > 0 ? (
     <div className="pt-6 px-4">
       <h1 className="pb-4 text-3xl font-bold text-white w-screen">{title}</h1>

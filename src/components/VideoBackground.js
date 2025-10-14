@@ -12,7 +12,6 @@ const VideoBackground = ({ movieId }) => {
   useMovieTrailer(movieId);
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
   const key = trailerVideo?.key;
-  console.log(key);
   if (!key) return;
   return (
     <div className="w-screen">
