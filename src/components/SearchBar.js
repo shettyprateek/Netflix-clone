@@ -19,7 +19,13 @@ const SearchBar = () => {
       API_OPTIONS
     );
     const json = await data.json();
-    setSearchLists(json.results.map(movie => movie.original_title).slice(0, 10));
+    setSearchLists(
+      Array.from(
+        new Set(
+          json.results.map(movie => movie.original_title).slice(0, 10)
+        )
+      )
+    );
   };
 
   const onSearch = (e) => {
@@ -54,7 +60,7 @@ const SearchBar = () => {
             autoFocus
           />
         </div>
-        {showSuggestion && (
+        {showSuggestion && searchQuery && (
           <div className="w-screen">
             <div className="bg-[#1A1E26] md:mx-40">
               {searchLists.map((searchList, index) => (
