@@ -12,14 +12,9 @@ const Browse = () => {
   const movies = useSelector((store) => store.movies);
   const mainMovie = movies?.nowPlayingMovies;
   if (!mainMovie) return;
-  const { original_title, overview, id } = mainMovie.results[0];
   return (
     <div>
-      <MainContainer
-        original_title={original_title}
-        overview={overview}
-        id={id}
-      />
+      <MainContainer />
       <SecondaryContainer />
     </div>
   );

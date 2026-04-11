@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import useMovieTrailer from "../hooks/useMovieTrailer";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { addTrailerVideo } from "../utils/moviesSlice";
+import VideoTitle from "./VideoTitle";
 
-const VideoBackground = ({ movieId }) => {
+const VideoBackground = ({ original_title, overview, movieId, showVideoTitle = true }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addTrailerVideo({}));
@@ -12,9 +13,10 @@ const VideoBackground = ({ movieId }) => {
   useMovieTrailer(movieId);
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
   const key = trailerVideo?.key;
-  if (!key) return;
   return (
     <div className="w-screen">
+      {showVideoTitle && <VideoTitle title={original_title} overview={overview} />}
+
       <iframe
         className="w-screen md:h-screen aspect-auto"
         src={"https://www.youtube.com/embed/" + key + "?autoplay=1&mute=1"}

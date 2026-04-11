@@ -16,7 +16,7 @@ const MovieContainer = () => {
   return (
     <div className="h-screen bg-black">
       <div key={movieId} className="pt-[30%] md:pt-0 bg-black">
-        <VideoBackground movieId={movieId} />
+        <VideoBackground movieId={movieId} showVideoTitle={false} />
         <MovieList title={"Recommended"} movies={recommendedMovies} />
       </div>
     </div>
