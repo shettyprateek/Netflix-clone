@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import VideoBackground from "./VideoBackground";
 import useMovieRecommendations from "../hooks/useMovieRecommendations";
